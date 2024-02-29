@@ -30,19 +30,25 @@ printf("%d\n",x);
    q.tailPtr=NULL;
    q.size=0;
 
-   int i,x;
+   int i,x, count = 1;
    
 
  for(i=1;i<argc;i++){
         if(strcmp(argv[i],"x")==0){
           if(q.size!=0){
+            printf("Customer number : %d\n",count);
+            count++;
             x=dequeue_struct(&q);
-            printf("dequeing %d\n",x);}
+            }
           else dequeue_struct(&q);
         }
         else {
-      enqueue_struct( &q, atoi(argv[i]));
+      enqueue_struct( &q, atoi(argv[i]), atoi(argv[i+1]));
+      printf("My order is %d\n", atoi(argv[i]));
+      i++;
         }
  }
+ printf("===========================================\n");
+ printf("There are %d people left in queue.\n", q.size);
   return 0;
 }
